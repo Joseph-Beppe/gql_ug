@@ -133,7 +133,6 @@ async def graphiql(request: Request):
 
 # Implementation of SLI collection with prometheus python client.
 from prometheus_client import start_http_server, Summary, Histogram
-from random import uniform # devel only
 import time
 
 # Summary gets basic data about the time spent in a function.
@@ -208,5 +207,8 @@ if DEMO:
     logging.info("####################################################")
 
 # Generate some requests for SLO.
+from random import uniform
 while True:
-    apollo_gql_slo_dummy(uniform(0, 0.21))
+    rand_time = uniform(0, 0.3)
+    apollo_gql_slo_dummy(rand_time)
+    time.sleep(rand_time * 2)
